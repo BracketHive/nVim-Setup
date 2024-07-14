@@ -7,7 +7,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { 'tsserver', 'lua_ls', 'html', 'volar', 'tailwindcss', 'somesass_ls', 'intelephense', 'jsonls', 'cssls' },
+  ensure_installed = { 'tsserver', 'lua_ls', 'html', 'volar', 'tailwindcss', 'somesass_ls', 'intelephense', 'cssls', 'jsonls', 'emmet_ls' },
   handlers = {
     tsserver = function()
       require('lspconfig').tsserver.setup({})
@@ -30,12 +30,15 @@ require('mason-lspconfig').setup({
     intelephense = function()
       require('lspconfig').intelephense.setup({})
     end,
-    jsonls = function ()
-      require('jsonls').jsonls.setup({})
+    emmet_ls = function ()
+      require('lspconfig').emmet_ls.setup({})
     end,
-    cssls = function ()
-      require('cssls').cssls.setup({})
-    end
+    cssls = function()
+      require('lspconfig').cssls.setup({})
+    end,
+    jsonls = function()
+      require('lspconfig').jsonls.setup({})
+    end,
   },
 })
 
