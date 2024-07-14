@@ -1,1 +1,1 @@
-require("brackethive")
+require("config.lazy")
