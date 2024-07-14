@@ -1,1 +1,2 @@
 # nVim-Setup
+lazy
