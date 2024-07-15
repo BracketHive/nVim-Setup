@@ -26,6 +26,10 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+vim.keymap.set("n", "<leader>y", "\"*yy")
+vim.keymap.set("v", "<leader>y", "\"*yy")
+vim.keymap.set("n", "<leader>p", "\"*p")
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -46,29 +50,6 @@ vim.cmd.colorscheme("rose-pine")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
--- Harpoon
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-
-vim.keymap.set("n", "<leader>a", mark.add_file)
-vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
-
-vim.keymap.set("n", "<C-h>", function () ui.nav_file(1) end)
-vim.keymap.set("n", "<C-t>", function () ui.nav_file(2) end)
-vim.keymap.set("n", "<C-n>", function () ui.nav_file(3) end)
-vim.keymap.set("n", "<C-s", function () ui.nav_file(4) end)
-
--- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-vim.keymap.set('n', 'C-p', builtin.git_files, {})
-vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") });
-end)
-
--- Fugitive
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git);
-
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
@@ -77,6 +58,13 @@ require("lazy").setup({
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
+  settings = {
+      Lua = {
+          diagnostics = {
+              globals = { 'vim' }
+          }
+      }
+  },
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
