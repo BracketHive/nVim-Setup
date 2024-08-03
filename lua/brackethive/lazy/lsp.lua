@@ -35,7 +35,8 @@ return {
         "intelephense",
         "cssls",
         "jsonls",
-        "emmet_ls"
+        "emmet_ls",
+        "dockerls"
       },
       handlers = {
         function(server_name) -- default handler (optional)
